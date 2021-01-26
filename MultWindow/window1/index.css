@@ -1,0 +1,12 @@
+.info{
+    padding: 5px;
+}
+
+.info label{
+    display: inline-block;
+    width: 100px;
+}
+
+.info span{
+    color: blue;
+}
