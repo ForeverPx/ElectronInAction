@@ -1,0 +1,24 @@
+body{
+}
+
+.container{
+  padding: 10px;
+  width: 560px;
+  height: 360px;
+  background: #fff;
+  border-radius: 40px;
+  box-shadow:5px 5px 5px grey;
+}
+
+.info{
+    padding: 5px;
+}
+
+.info label{
+    display: inline-block;
+    width: 100px;
+}
+
+.info span{
+    color: blue;
+}
