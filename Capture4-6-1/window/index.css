@@ -1,0 +1,35 @@
+html{
+    overflow: hidden;
+}
+
+body{
+    padding: 0px;
+    margin:0px;
+}
+
+.container{
+  position: relative;
+  height: 700px;
+  width: 100px;
+}
+
+#bar{
+  border-radius: 50px;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#icon{
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    cursor: pointer;
+}
