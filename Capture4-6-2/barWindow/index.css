@@ -1,0 +1,19 @@
+html{
+  overflow: hidden;
+}
+
+body{
+  padding: 0px;
+  margin:0px;
+}
+
+
+#bar{
+  border-radius: 50px;
+  background-color: #fff;
+  width: 100px;
+  height: 700px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}

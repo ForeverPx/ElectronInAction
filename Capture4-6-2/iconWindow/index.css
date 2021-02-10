@@ -1,0 +1,19 @@
+html{
+    overflow: hidden;
+}
+
+body{
+    padding: 0px;
+    margin:0px;
+}
+
+#icon{
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
