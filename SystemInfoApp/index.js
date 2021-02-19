@@ -18,7 +18,6 @@ if(winTheLock){
 
 
   function createWindow() {
-
     window = new electron.BrowserWindow({
       width: 600,
       height: 400,
@@ -35,7 +34,6 @@ if(winTheLock){
 
 
     window.loadURL(urls)
-    console.log(urls);
 
     window.on('close', function(){
       window = null;
@@ -48,7 +46,6 @@ if(winTheLock){
 
   app.on('ready', function () {
     createWindow()
-    // createWindow()
   })
 }else{
   app.quit();

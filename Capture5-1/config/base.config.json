@@ -1,0 +1,5 @@
+{
+    "serverProto": "https",
+    "serverBasePath": "/server/v1/",
+    "clientVersion": "1.0.0"
+}

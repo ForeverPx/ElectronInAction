@@ -1,0 +1,16 @@
+{
+  "name": "Capture4-6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "electron . env=dev",
+    "start:test": "electron . env=test",
+    "start:prod": "electron . env=prod"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
