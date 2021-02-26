@@ -1,10 +1,6 @@
-window = new electron.BrowserWindow({
-  width: 600,
-  height: 400,
-  minWidth: 600,
-  maxWidth: 800,
-  minHeight: 400,
-  maxHeight: 600,
-  resizable: true,
-  movable: true
-})
+var cp = require('child_process');
+const console = require('console');
+cp.exec("reg query HKEY_CLASSES_ROOT\\sysInfoApp\\shell\\open\\command /ve",
+  function(error,stdout,stderr) {
+    console.log(error, stdout, stderr);
+});

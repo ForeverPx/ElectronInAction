@@ -1,4 +1,4 @@
-const { ipcRenderer,remote} = require("electron");
+const { ipcRenderer,remote} = require("../../Capture5-5/node_modules/electron");
 const HIDDEN = 0;
 const AMIMATING = 1;
 const SHOWED = 2;
