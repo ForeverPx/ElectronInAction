@@ -5,8 +5,8 @@ const path = require('path');
 
 let window = null;
 
-const winTheLock = app.requestSingleInstanceLock();
-if(winTheLock){
+// const winTheLock = app.requestSingleInstanceLock();
+// if(winTheLock){
   app.on('second-instance', (event, commandLine, workingDirectory) => {
     if (window) {
       if (window.isMinimized()){
@@ -45,8 +45,10 @@ if(winTheLock){
   })
 
   app.on('ready', function () {
+
     createWindow()
   })
-}else{
-  app.quit();
-}
+// }else{
+//   console.log('quit');
+//   app.quit();
+// }
