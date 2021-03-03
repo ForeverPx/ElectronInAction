@@ -2,9 +2,8 @@ const electron = require('electron');
 const app = electron.app;
 const url = require('url');
 const path = require('path');
-const t = require('./test');
-
-console.log(t.add(1,1))
+const demo = require('./dll');
+console.log(demo.sum(5));
 
 let window = null;
 

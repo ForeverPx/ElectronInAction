@@ -13,6 +13,7 @@
   "dependencies": {
     "electron": "^4.2.12",
     "electron-rebuild": "^2.3.5",
-    "ffi": "^2.3.0"
+    "ffi": "^2.3.0",
+    "ref-array": "^1.2.0"
   }
 }

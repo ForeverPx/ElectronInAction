@@ -1,9 +1,9 @@
 {
     "targets": [
         {
-            "target_name": "math",
+            "target_name": "demo",
             "type": "shared_library",
-            "sources": [ "math.cc" ]
+            "sources": [ "demo.cc" ]
         }
     ]
 }

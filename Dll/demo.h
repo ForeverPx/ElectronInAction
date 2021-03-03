@@ -1,0 +1,1 @@
+extern "C" __declspec(dllexport) int sum(int size);
