@@ -1,0 +1,20 @@
+{
+  "name": "systeminfoapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rebuild": "electron-rebuild -v 4.2.12 -w ffi"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^4.2.12",
+    "electron-rebuild": "^2.3.5",
+    "ffi": "^2.3.0",
+    "node-addon-api": "^3.1.0",
+    "ref-array": "^1.2.0"
+  }
+}
