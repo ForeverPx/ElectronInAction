@@ -1,4 +1,4 @@
-const electron = require('../Capture6-2-1/node_modules/electron');
+const electron = require('electron');
 const app = electron.app;
 const url = require('url');
 const path = require('path');
