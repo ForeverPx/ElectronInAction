@@ -1,0 +1,14 @@
+.item{
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.item label{
+    margin-right: 5px;
+    color: blue;
+}
+
+.item input{
+    outline: none;
+    padding: 5px;
+}

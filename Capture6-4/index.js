@@ -1,15 +1,28 @@
 const electron = require('electron');
-const app = electron.app;
+const { app, ipcMain, globalShortcut, shell} = require('electron');
 const url = require('url');
 const path = require('path');
 
-// const testAddon = require('./build/Release/demo_addon.node');
-// console.log(testAddon.sum(3));
+ipcMain.on('registerShortcut', (event, data) => {
+  try {
+    console.log(data);
+    const dataObj = JSON.parse(data);
+    const result = globalShortcut.register(dataObj.shortcut, function(){
+      shell.openExternal(dataObj.url);
+    })
+    if(!result){
+      console.log('注册快捷键失败');
+    }else{
+      console.log('注册快捷键成功');
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 let window = null;
-
-// const winTheLock = app.requestSingleInstanceLock();
-// if(winTheLock){
+const winTheLock = app.requestSingleInstanceLock();
+if(winTheLock){
   app.on('second-instance', (event, commandLine, workingDirectory) => {
     if (window) {
       if (window.isMinimized()){
@@ -18,7 +31,6 @@ let window = null;
       window.focus();
     }
   })
-
 
   function createWindow() {
     window = new electron.BrowserWindow({
@@ -48,10 +60,9 @@ let window = null;
   })
 
   app.on('ready', function () {
-
     createWindow()
   })
-// }else{
-//   console.log('quit');
-//   app.quit();
-// }
+}else{
+  console.log('quit');
+  app.quit();
+}
