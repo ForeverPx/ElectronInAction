@@ -1,17 +1,33 @@
-const { desktopCapturer,remote, ipcRenderer} = window.require('electron');
+const { desktopCapturer, remote, ipcRenderer} = window.require('electron');
+const dialog = remote.dialog
 const screen = remote.screen;
 const win = remote.getCurrentWindow();
+const fs = require('fs')
+const {
+  draw,
+  clearCanvas
+} = require('./draw');
 
-ipcRenderer.on('begin-capture', function(event){
+function resizeCanvas(){
+  const {width, height} = screen.getPrimaryDisplay().workAreaSize;
+  const c = document.getElementById("screen-shot");
+  c.width = width;
+  c.height = height;
+}
+
+resizeCanvas();
+draw();
+
+
+ipcRenderer.on('begin-capture', function (event) {
   run();
 });
 
-async function run(){
-  console.log(5666);
+let nativeImage = null;
+
+async function run() {
   try {
     const screenSize = screen.getPrimaryDisplay().workAreaSize;
-    // const maxDimension = Math.max(screenSize.width, screenSize.height);
-    console.log(screenSize);
     const sources = await desktopCapturer.getSources({
       types: ['screen'],
       thumbnailSize: {
@@ -19,28 +35,48 @@ async function run(){
         height: screenSize.height
       }
     });
-  
+
     const entireScreenSource = sources.find(
       source => source.name === 'Entire Screen' || source.name === 'Screen 1'
     );
-
-    console.log(entireScreenSource);
-  
-    console.log(888);
-    const image = entireScreenSource.thumbnail
+    nativeImage = entireScreenSource.thumbnail
       .resize({
         width: screenSize.width,
         height: screenSize.height
       })
       .toDataURL();
-      console.log(image);
-    var c=document.getElementById("screen-shot");
-    var ctx=c.getContext("2d");
-    ctx.drawImage(image,0,0);
-  
-    win.show();
-  
+
+    const img = new Image();
+    img.src = nativeImage;
+    img.onload = function () {
+      const c = document.getElementById("screen-shot");
+      const ctx = c.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      win.show();
+    }
   } catch (e) {
-  console.log(e);
+    console.log(e);
   }
 }
+
+const closeBtn = document.getElementById('close-btn');
+closeBtn.addEventListener('click', function(){
+  win.hide();
+  clearCanvas();
+})  
+
+const saveBtn = document.getElementById('save-btn');
+saveBtn.addEventListener('click', function(){
+  // ipcRenderer.send('save-file');
+  dialog.showOpenDialog(win, {
+    properties: ["openDirectory"]
+  }).then(result => {
+    if (result.canceled === false) {
+        console.log("Selected file paths:")
+        console.log(result.filePaths)
+        fs.writeFileSync(`${result.filePaths[0]}/screenshot.png`, nativeImage);
+    }
+  }).catch(err => {
+    console.log(err)
+  })
+})  

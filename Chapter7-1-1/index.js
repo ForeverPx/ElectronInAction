@@ -1,13 +1,12 @@
 const electron = require('electron');
-const { app, ipcMain, globalShortcut} = require('electron');
+const { app, ipcMain, globalShortcut, screen, dialog} = require('electron');
 const url = require('url');
 const path = require('path');
 
 let window = null;
 
 app.whenReady().then(() => {
-  const result = globalShortcut.register(`Command+0`, function(){
-    console.log(`Command+0`);
+  const result = globalShortcut.register(`Ctrl+0`, function(){
     window.webContents.send('begin-capture');
   })
   if(!result){
@@ -17,23 +16,40 @@ app.whenReady().then(() => {
   }
 })
 
-// const winTheLock = app.requestSingleInstanceLock();
-// if(winTheLock){
-  // app.on('second-instance', (event, commandLine, workingDirectory) => {
-  //   if (window) {
-  //     if (window.isMinimized()){
-  //       window.restore();
-  //     }
-  //     window.focus();
-  //   }
-  // })
+ipcMain.on('save-file', (event, data) => {
+  try {
+    dialog.showSaveDialog(null, {
+      title:'保存文件',
+    }).then((res)=>{
+      console.log(res)
+      // fs.writeFileSync(res.filePath, '21312331312');
+    }).catch((req)=>{
+      console.log(req)
+    })
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+const winTheLock = app.requestSingleInstanceLock();
+if(winTheLock){
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    if (window) {
+      if (window.isMinimized()){
+        window.restore();
+      }
+      window.focus();
+    }
+  })
 
 
   function createWindow() {
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize
     window = new electron.BrowserWindow({
-      width: 600,
-      height: 400,
-      show: true,
+      width: width,
+      height: height,
+      show: false,
+      frame: false,
       webPreferences: {
         nodeIntegration: true,
         enableRemoteModule: true
@@ -61,7 +77,7 @@ app.whenReady().then(() => {
 
     createWindow()
   })
-// }else{
-//   console.log('quit');
-//   app.quit();
-// }
+}else{
+  console.log('quit');
+  app.quit();
+}
