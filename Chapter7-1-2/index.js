@@ -8,10 +8,16 @@ let previewWindow = null;
 
 app.whenReady().then(() => {
   const startShortcutResult = globalShortcut.register(`Ctrl+9`, function(){
-    window.webContents.send('begin-record');
+    timeWindow.webContents.send('begin-record');
+    previewWindow.webContents.send('begin-record');
+    previewWindow.hide()
+    timeWindow.show();
   })
   const stopShortcutResult = globalShortcut.register(`Ctrl+0`, function(){
-    window.webContents.send('stop-record');
+    timeWindow.webContents.send('stop-record');
+    previewWindow.webContents.send('stop-record');
+    timeWindow.hide();
+    previewWindow.show()
   })
   if(!startShortcutResult || !stopShortcutResult){
     console.log('注册快捷键失败');
@@ -47,8 +53,36 @@ if(winTheLock){
   })
 
   app.on('ready', function () {
-    
-    createWindow()
+    const timeWindowUrl = url.format({
+      protocol: 'file',
+      pathname: path.join(__dirname, 'timeWindow/index.html')
+    })
+    timeWindow = createWindow(timeWindowUrl, {
+      width: 300,
+      height: 200,
+      show: false, //默认不显示窗口
+      frame: false,
+      webPreferences: {
+        nodeIntegration: true,
+        enableRemoteModule: true
+      }
+    })
+
+    const previewWindowUrl = url.format({
+      protocol: 'file',
+      pathname: path.join(__dirname, 'previewWindow/index.html')
+    })
+
+    previewWindow = createWindow(previewWindowUrl, {
+      width: 1280,
+      height: 720,
+      show: false, //默认不显示窗口
+      frame: false,
+      webPreferences: {
+        nodeIntegration: true,
+        enableRemoteModule: true
+      }
+    })
   })
 }else{
   console.log('quit');

@@ -1,83 +1,104 @@
 const fs = require('fs');
-const electron = require('electron');
 const { desktopCapturer, remote, ipcRenderer } = window.require('electron');
-const screen = remote.screen;
-const recorder;
-const blobs = [];
-const SECRET_KEY = 'Magnemite';
-const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+const dialog = remote.dialog;
+let recorder = null;
+let blob = [];
+const win = remote.getCurrentWindow();
+
+ipcRenderer.on('begin-record', function () {
+  recorder = null;
+  blob = [];
+  startRecording();
+});
+
+ipcRenderer.on('stop-record', function () {
+  stopRecording();
+});
 
 function startRecording() {
-  var title = document.title;
-  document.title = SECRET_KEY;
-
-  desktopCapturer.getSources({ types: ['window', 'screen'] }, function (error, sources) {
-    if (error) throw error;
-    for (let i = 0; i < sources.length; i++) {
-      let src = sources[i];
-      console.log(src.name);
-      if (src.name === SECRET_KEY) {
-        navigator.webkitGetUserMedia({
-          audio: false,
-          video: {
-            mandatory: {
-              chromeMediaSource: 'desktop',
-              chromeMediaSourceId: src.id,
-              minWidth: width,
-              maxWidth: width,
-              minHeight: height,
-              maxHeight: height
-            }
+  try {
+    desktopCapturer.getSources({ types: ['window', 'screen'] }).then(async sources => {
+      console.log(sources);
+      for (const source of sources) {
+        if (source.name === 'Entire Screen') {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+              audio: false,
+              video: {
+                mandatory: {
+                  chromeMediaSource: 'desktop',
+                  chromeMediaSourceId: source.id,
+                  minWidth: 1280,
+                  maxWidth: 1280,
+                  minHeight: 720,
+                  maxHeight: 720
+                }
+              }
+            })
+            handleStream(stream)
+          } catch (e) {
+            console.error(e);
           }
-        }, handleStream, handleUserMediaError);
-        return;
+          return
+        }
       }
-    }
-  });
+    })
+  } catch (error) {
+    console.log(error);
+  }
 }
+
 
 function handleStream(stream) {
-  recorder = new MediaRecorder(stream);
-  blobs = [];
-  recorder.ondataavailable = function (event) {
-    blobs.push(event.data);
-  };
-  recorder.start();
+  createRecorder(stream);
 }
 
-function handleUserMediaError(e) {
-  console.error('handleUserMediaError', e);
-}
+
+function createRecorder(stream) {
+  recorder = new MediaRecorder(stream);
+  recorder.start();
+  recorder.ondataavailable = event => {
+    blob = new Blob([event.data], {
+      type: 'video/mp4',
+    });
+    previewMedia(blob);
+  };
+  recorder.onerror = err => {
+    console.error(err);
+  };
+};
 
 function stopRecording() {
   recorder.stop();
-  toArrayBuffer(new Blob(blobs, { type: 'video/webm' }), function (ab) {
-    var buffer = toBuffer(ab);
-    var file = `./videos/example.webm`;
-    fs.writeFile(file, buffer, function (err) {
-      if (err) {
-        console.error('Failed to save video ' + err);
-      } else {
-        console.log('Saved video: ' + file);
-      }
+}
+
+function previewMedia(blob) {
+  document.getElementById('preview').src = URL.createObjectURL(blob);
+}
+
+function saveMedia(blob, path) {
+  let reader = new FileReader();
+  reader.onload = () => {
+    let buffer = new Buffer(reader.result);
+    fs.writeFile(`${path}/example.mp4`, buffer, {}, (err, res) => {
+      if (err) return console.error(err);
     });
-  });
-}
-
-function toArrayBuffer(blob, cb) {
-  const fileReader = new FileReader();
-  fileReader.onload = function () {
-    const arrayBuffer = this.result;
-    cb(arrayBuffer);
   };
-  fileReader.readAsArrayBuffer(blob);
+  reader.onerror = err => console.error(err);
+  reader.readAsArrayBuffer(blob);
 }
 
-function toBuffer(ab) {
-  const buffer = new Buffer(ab.byteLength);
-  const arr = new Uint8Array(ab);
-  for (let i = 0; i < arr.byteLength; i++) {
-    buffer[i] = arr[i];
-  }
-  return buffer;
-}
+const saveBtn = document.getElementById('save-btn');
+saveBtn.addEventListener('click', function(){
+  dialog.showOpenDialog(win, {
+    properties: ["openDirectory"]
+  }).then(result => {
+    if (result.canceled === false) {
+        console.log("Selected file paths:")
+        console.log(result.filePaths)
+        saveMedia(blob, result.filePaths[0]);
+    }
+  }).catch(err => {
+    console.log(err)
+  })
+});
