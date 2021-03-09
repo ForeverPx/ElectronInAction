@@ -1,5 +1,5 @@
 const electron = require('electron');
-const { app, ipcMain, globalShortcut, screen, dialog} = require('electron');
+const { app, globalShortcut, screen} = require('electron');
 const url = require('url');
 const path = require('path');
 
@@ -16,21 +16,6 @@ app.whenReady().then(() => {
   }
 })
 
-ipcMain.on('save-file', (event, data) => {
-  try {
-    dialog.showSaveDialog(null, {
-      title:'保存文件',
-    }).then((res)=>{
-      console.log(res)
-      // fs.writeFileSync(res.filePath, '21312331312');
-    }).catch((req)=>{
-      console.log(req)
-    })
-  } catch (error) {
-    console.log(error)
-  }
-})
-
 const winTheLock = app.requestSingleInstanceLock();
 if(winTheLock){
   app.on('second-instance', (event, commandLine, workingDirectory) => {
@@ -42,13 +27,12 @@ if(winTheLock){
     }
   })
 
-
   function createWindow() {
     const { width, height } = screen.getPrimaryDisplay().workAreaSize
     window = new electron.BrowserWindow({
       width: width,
       height: height,
-      show: false,
+      show: false, //默认不显示窗口
       frame: false,
       webPreferences: {
         nodeIntegration: true,
@@ -60,7 +44,6 @@ if(winTheLock){
       protocol: 'file',
       pathname: path.join(__dirname, 'index.html')
     })
-
 
     window.loadURL(urls)
 
@@ -74,7 +57,6 @@ if(winTheLock){
   })
 
   app.on('ready', function () {
-
     createWindow()
   })
 }else{

@@ -4,20 +4,13 @@ const screen = remote.screen;
 const win = remote.getCurrentWindow();
 const fs = require('fs')
 const {
-  draw,
-  clearCanvas
-} = require('./draw');
-
-function resizeCanvas(){
-  const {width, height} = screen.getPrimaryDisplay().workAreaSize;
-  const c = document.getElementById("screen-shot");
-  c.width = width;
-  c.height = height;
-}
+  drawCanvas,
+  clearCanvas,
+  resizeCanvas
+} = require('./canvas');
 
 resizeCanvas();
-draw();
-
+drawCanvas();
 
 ipcRenderer.on('begin-capture', function (event) {
   run();
@@ -43,11 +36,12 @@ async function run() {
       .resize({
         width: screenSize.width,
         height: screenSize.height
-      })
-      .toDataURL();
+      });
+
+    const imageBase64 = nativeImage.toDataURL();
 
     const img = new Image();
-    img.src = nativeImage;
+    img.src = imageBase64;
     img.onload = function () {
       const c = document.getElementById("screen-shot");
       const ctx = c.getContext("2d");
@@ -67,14 +61,13 @@ closeBtn.addEventListener('click', function(){
 
 const saveBtn = document.getElementById('save-btn');
 saveBtn.addEventListener('click', function(){
-  // ipcRenderer.send('save-file');
   dialog.showOpenDialog(win, {
     properties: ["openDirectory"]
   }).then(result => {
     if (result.canceled === false) {
         console.log("Selected file paths:")
         console.log(result.filePaths)
-        fs.writeFileSync(`${result.filePaths[0]}/screenshot.png`, nativeImage);
+        fs.writeFileSync(`${result.filePaths[0]}/screenshot.png`, nativeImage.toPNG());
     }
   }).catch(err => {
     console.log(err)
