@@ -1,6 +1,7 @@
 const canvas = document.getElementById('screen-shot');
 const ctx = canvas.getContext('2d');
 const {remote} = window.require('electron');
+const screen = remote.screen;
 
 /**
  * 在canvas中支持鼠标笔迹
