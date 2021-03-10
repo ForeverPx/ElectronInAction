@@ -5,20 +5,19 @@ let recorder = null;
 let blob = [];
 const win = remote.getCurrentWindow();
 
-ipcRenderer.on('begin-record', function () {
+ipcRenderer.on('begin-record', ()=> {
   recorder = null;
   blob = [];
   startRecording();
 });
 
-ipcRenderer.on('stop-record', function () {
+ipcRenderer.on('stop-record', ()=>  {
   stopRecording();
 });
 
 function startRecording() {
   try {
-    desktopCapturer.getSources({ types: ['window', 'screen'] }).then(async sources => {
-      console.log(sources);
+    desktopCapturer.getSources({ types: ['screen'] }).then(async sources => {
       for (const source of sources) {
         if (source.name === 'Entire Screen') {
           try {
@@ -35,7 +34,7 @@ function startRecording() {
                 }
               }
             })
-            handleStream(stream)
+            createRecorder(stream)
           } catch (e) {
             console.error(e);
           }
@@ -47,12 +46,6 @@ function startRecording() {
     console.log(error);
   }
 }
-
-
-function handleStream(stream) {
-  createRecorder(stream);
-}
-
 
 function createRecorder(stream) {
   recorder = new MediaRecorder(stream);
@@ -80,7 +73,7 @@ function saveMedia(blob, path) {
   let reader = new FileReader();
   reader.onload = () => {
     let buffer = new Buffer(reader.result);
-    fs.writeFile(`${path}/example.mp4`, buffer, {}, (err, res) => {
+    fs.writeFile(`${path}/screen.mp4`, buffer, {}, (err, res) => {
       if (err) return console.error(err);
     });
   };

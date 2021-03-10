@@ -1,5 +1,5 @@
 const electron = require('electron');
-const { app, globalShortcut, screen} = require('electron');
+const { app, globalShortcut } = require('electron');
 const url = require('url');
 const path = require('path');
 

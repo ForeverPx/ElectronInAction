@@ -5,6 +5,9 @@ const timeElement = document.getElementById('time');
 let timeCounter = 0;
 let interval = null;
 
+/**
+ * 格式化时间
+ */
 function formatTime() {
   let s = `${parseInt(timeCounter % 60)}`;
   let m = `${parseInt(timeCounter / 60 % 60)}`;
@@ -18,7 +21,7 @@ function formatTime() {
   return `${m}:${s}`;
 }
 
-ipcRenderer.on('begin-record', function () {
+ipcRenderer.on('begin-record', ()=>  {
   interval = setInterval(() => {
     timeCounter = timeCounter + 1;
     let timestr = formatTime();
@@ -26,7 +29,7 @@ ipcRenderer.on('begin-record', function () {
   }, 1000);
 })
 
-ipcRenderer.on('stop-record', function () {
+ipcRenderer.on('stop-record', ()=>  {
   clearInterval(interval);
   timeCounter = 0;
   timeElement.innerHTML = '00:00';
