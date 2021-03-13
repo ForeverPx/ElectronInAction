@@ -5,13 +5,13 @@ let recorder = null;
 let blob = [];
 const win = remote.getCurrentWindow();
 
-ipcRenderer.on('begin-record', ()=> {
+ipcRenderer.on('begin-record', () => {
   recorder = null;
   blob = [];
   startRecording();
 });
 
-ipcRenderer.on('stop-record', ()=>  {
+ipcRenderer.on('stop-record', () => {
   stopRecording();
 });
 
@@ -82,16 +82,20 @@ function saveMedia(blob, path) {
 }
 
 const saveBtn = document.getElementById('save-btn');
-saveBtn.addEventListener('click', function(){
+saveBtn.addEventListener('click', function () {
   dialog.showOpenDialog(win, {
     properties: ["openDirectory"]
   }).then(result => {
     if (result.canceled === false) {
-        console.log("Selected file paths:")
-        console.log(result.filePaths)
-        saveMedia(blob, result.filePaths[0]);
+      saveMedia(blob, result.filePaths[0]);
     }
   }).catch(err => {
     console.log(err)
   })
+});
+
+const closeBtn = document.getElementById('close-btn');
+closeBtn.addEventListener('click', function () {
+  win.hide();
+  document.getElementById('preview').src = '';
 });

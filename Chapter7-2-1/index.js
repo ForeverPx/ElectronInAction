@@ -32,7 +32,7 @@ if(winTheLock){
     window = new electron.BrowserWindow({
       width: width,
       height: height,
-      show: false, //默认不显示窗口
+      show: true, //默认不显示窗口
       frame: false,
       webPreferences: {
         nodeIntegration: true,
