@@ -1,0 +1,54 @@
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  .mask {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+  }
+  .content {
+    width: 320px;
+    height: 176px;
+    top: calc(50% - 100px);
+    left: calc(50% - 160px);
+    position: absolute;
+    z-index: 2;
+    background-color: #ffffff;
+    .title {
+      text-align: center;
+      height: 128px;
+      padding-top: 24px;
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 20px;
+    }
+    .footer {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      height: 48px;
+      line-height: 48px;
+      display: flex;
+      text-align: center;
+      .cancel {
+        cursor: pointer;
+        width: 160px;
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.02);
+        }
+      }
+      .submit {
+        cursor: pointer;
+        border-top: 1px solid fed634;
+        width: 160px;
+        background-color: #fed634;
+        &:hover {
+          background-color: #fbdc5d;
+        }
+      }
+    }
+  }
+}
