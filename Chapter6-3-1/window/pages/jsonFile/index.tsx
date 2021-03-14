@@ -6,7 +6,7 @@ import Editor from '../../components/Editor';
 import MyScrollBox from '../../components/MyScrollBox';
 import ConfirmModal from '../../components/ConfirmModal';
 import { remote } from 'electron';
-import { readJsonFile, updateJsonFile } from '../../utils/jsonFile';
+import { readData, updateData } from '../../utils/jsonFile';
 import path from 'path';
 const jsonFileDataPath = path.join(
   remote.getGlobal('ROOT_PATH'),
@@ -38,7 +38,7 @@ function JsonFile() {
 
   useEffect(() => {
     // 读取jsonfile本地文件内容
-    const values = readJsonFile(jsonFileDataPath);
+    const values = readData(jsonFileDataPath);
     setJsonData(values);
     if (values && values.list.length > 0) {
       setList([...values.list]);
@@ -128,7 +128,7 @@ function JsonFile() {
       list: [...nextList],
     };
     setJsonData(newJsonData);
-    updateJsonFile(jsonFileDataPath, newJsonData);
+    updateData(jsonFileDataPath, newJsonData);
     setEditStatus(false);
   }, [index, isDeleteModal]);
 
@@ -164,7 +164,7 @@ function JsonFile() {
         list: [...nextList],
       };
       setJsonData(newJsonData);
-      updateJsonFile(jsonFileDataPath, newJsonData);
+      updateData(jsonFileDataPath, newJsonData);
       setEditStatus(false);
     }
   };
@@ -188,7 +188,7 @@ function JsonFile() {
       list: [...nextList],
     };
     setJsonData(newJsonData);
-    updateJsonFile(jsonFileDataPath, newJsonData);
+    updateData(jsonFileDataPath, newJsonData);
   };
 
   return (

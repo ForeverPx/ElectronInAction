@@ -5,7 +5,7 @@ import fs from 'fs';
  * @description 读取 json格式的文件 内容
  * @param filePath
  */
-export function readJsonFile(filePath: string) {
+export function readData(filePath: string) {
   try {
     let fileContent = readFile(filePath);
     if (typeof fileContent === 'string') {
@@ -23,7 +23,7 @@ export function readJsonFile(filePath: string) {
  * @param filePath
  * @param updateContent
  */
-export function updateJsonFile(filePath: string, updateContent: any) {
+export function updateData(filePath: string, updateContent: any) {
   try{
     fs.writeFileSync(filePath, JSON.stringify(updateContent));
   }catch(error){
