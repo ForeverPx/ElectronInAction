@@ -1,15 +1,13 @@
 module.exports = {
   presets: [
     [
-      '@babel/preset-env',
-      // 待配置
+      '@babel/preset-env'
     ],
     '@babel/preset-react',
     '@babel/preset-typescript',
   ],
   plugins: [
     '@babel/plugin-transform-runtime',
-    // css-modules
     [
       'babel-plugin-react-css-modules',
       {

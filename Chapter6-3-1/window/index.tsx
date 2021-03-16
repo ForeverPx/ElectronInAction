@@ -15,9 +15,6 @@ function App() {
         <Route path="/jsonfile">
           <JsonFile />
         </Route>
-        <Route path="/indexDB">
-          <JsonFile />
-        </Route>
       </Switch>
       <Redirect to="/jsonfile" />
     </Router>
