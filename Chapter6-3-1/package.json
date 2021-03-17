@@ -1,7 +1,7 @@
 {
-  "name": "jsonfilestore",
+  "name": "MiniNote",
   "version": "1.0.0",
-  "description": "jsonfilestore",
+  "description": "MiniNote",
   "main": "./main.js",
   "scripts": {
     "install-electron": "ELECTRON_MIRROR=https://cdn.npm.taobao.org/dist/electron/ npm install electron",

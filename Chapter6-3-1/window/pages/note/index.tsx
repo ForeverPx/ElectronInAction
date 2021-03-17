@@ -8,6 +8,7 @@ import ConfirmModal from '../../components/ConfirmModal';
 import { remote } from 'electron';
 import { readData, updateData } from '../../utils/jsonFile';
 import path from 'path';
+
 const jsonFileDataPath = path.join(
   remote.getGlobal('ROOT_PATH'),
   'window/store/jsonFile/data.json'

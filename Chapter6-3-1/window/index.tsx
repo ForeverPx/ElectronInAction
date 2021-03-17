@@ -6,17 +6,17 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import JsonFile from './pages/jsonFile';
+import Note from './pages/note';
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/jsonfile">
-          <JsonFile />
+        <Route path="/note">
+          <Note />
         </Route>
       </Switch>
-      <Redirect to="/jsonfile" />
+      <Redirect to="/note" />
     </Router>
   );
 }
