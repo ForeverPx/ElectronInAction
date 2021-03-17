@@ -40,7 +40,7 @@ function createWindow() {
     },
   });
 
-  mainWindow.loadURL(`http://127.0.0.1:7001`);
+  window.loadURL(`http://127.0.0.1:7001`);
 }
 
-global.ROOT_PATH = path.join(app.getAppPath());
+global.ROOT_PATH = app.getPath('userData');

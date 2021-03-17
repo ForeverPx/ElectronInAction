@@ -11,7 +11,7 @@ import path from 'path';
 
 const jsonFileDataPath = path.join(
   remote.getGlobal('ROOT_PATH'),
-  'window/store/jsonFile/data.json'
+  'data.json'
 );
 
 function JsonFile() {
@@ -113,6 +113,7 @@ function JsonFile() {
       deleteIndex: -1,
     });
   }, [index, isDeleteModal]);
+  
   const onDeleteOk = useCallback(() => {
     let nextList = [...list];
     const nextDeleteIndex = isDeleteModal.deleteIndex;
