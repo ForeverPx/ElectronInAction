@@ -6,6 +6,7 @@ export interface ItemProps {
   content: string;
   date: number;
   title: string;
+  id: string;
 }
 
 interface IProps {

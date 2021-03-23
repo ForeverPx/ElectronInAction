@@ -7,15 +7,6 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Note from './pages/note';
-import {add, getAll} from './utils/indexDB';
-
-setTimeout(()=>{
-  // add({id: '1', name:'px'});
-  // add({id: '2', name:'px'});
-
-  getAll();
-}, 2000);
-
 
 function App() {
   return (

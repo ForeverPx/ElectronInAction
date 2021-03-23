@@ -55,7 +55,6 @@ export function get(key) {
     };
 
     request.onsuccess = function (event) {
-      // Do something with the request.result!
       console.log('get success');
       resolve(request.result);
     };
@@ -84,11 +83,11 @@ export function remove(key) {
   })
 }
 
-export function put(key, content) {
+export function put(content) {
   return new Promise((resolve, reject) => {
     const request = db.transaction(["notes"], "readwrite")
       .objectStore("notes")
-      .put(key, content);
+      .put(content);
 
     request.onerror = function (event) {
       console.log('get error');

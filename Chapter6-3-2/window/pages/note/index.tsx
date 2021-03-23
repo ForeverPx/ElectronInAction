@@ -6,8 +6,9 @@ import Editor from '../../components/Editor';
 import MyScrollBox from '../../components/MyScrollBox';
 import ConfirmModal from '../../components/ConfirmModal';
 import { remote } from 'electron';
-import { readData, updateData } from '../../utils/jsonFile';
+import { add, remove, get, put, getAll } from '../../utils/indexDB';
 import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
 
 const jsonFileDataPath = path.join(
   remote.getGlobal('ROOT_PATH'),
@@ -38,13 +39,18 @@ function JsonFile() {
   }, [document.body]);
 
   useEffect(() => {
-    // 读取jsonfile本地文件内容
-    const values = readData(jsonFileDataPath);
-    setJsonData(values);
-    if (values && values.list.length > 0) {
-      setList([...values.list]);
-      setCurrentDiary(values?.list[index]);
-    }
+    // 读取indexDB的数据，渲染笔记列表
+    setTimeout(()=>{
+      getAll().then((values: any)=>{
+        setJsonData(values);
+        if (values && values.length > 0) {
+          setList([...values]);
+          setCurrentDiary(values[index]);
+        }
+      }).catch((error)=>{
+        console.log(error);
+      });
+    }, 2000)
   }, []);
 
   // 切换笔记
@@ -117,7 +123,7 @@ function JsonFile() {
   const onDeleteOk = useCallback(() => {
     let nextList = [...list];
     const nextDeleteIndex = isDeleteModal.deleteIndex;
-    nextList.splice(nextDeleteIndex, 1);
+    const deleteData = nextList.splice(nextDeleteIndex, 1)[0];
     setIndex(0);
     setList(nextList);
     setCurrentDiary(nextList[0] || undefined);
@@ -125,12 +131,8 @@ function JsonFile() {
       show: false,
       deleteIndex: -1,
     });
-    const newJsonData = {
-      ...jsonData,
-      list: [...nextList],
-    };
-    setJsonData(newJsonData);
-    updateData(jsonFileDataPath, newJsonData);
+    // 从indexDB中删除数据
+    remove(deleteData.id);
     setEditStatus(false);
   }, [index, isDeleteModal]);
 
@@ -161,12 +163,8 @@ function JsonFile() {
         date: new Date().valueOf(),
       };
       setList(nextList);
-      const newJsonData = {
-        ...jsonData,
-        list: [...nextList],
-      };
-      setJsonData(newJsonData);
-      updateData(jsonFileDataPath, newJsonData);
+      setJsonData(nextList[index]);
+      put(nextList[index]);
       setEditStatus(false);
     }
   };
@@ -177,6 +175,7 @@ function JsonFile() {
   // 新增状态-添加笔记
   const onAdd = () => {
     const newAddItem: ItemProps = {
+      id: uuidv4(),
       title: '未命名笔记',
       date: new Date().valueOf(),
       content: '',
@@ -185,12 +184,8 @@ function JsonFile() {
     let nextList = [...list];
     nextList.unshift(newAddItem);
     setList(nextList);
-    const newJsonData = {
-      ...jsonData,
-      list: [...nextList],
-    };
-    setJsonData(newJsonData);
-    updateData(jsonFileDataPath, newJsonData);
+    setJsonData(newAddItem);
+    add(newAddItem);
   };
 
   return (
