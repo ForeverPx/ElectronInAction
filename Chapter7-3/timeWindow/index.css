@@ -6,8 +6,12 @@ body {
 }
 
 #time {
-  font-size: 80px;
+  font-size: 50px;
   text-align: center;
-  line-height: 200px;
   color: red;
+}
+
+#graph{
+  width: 100%;
+  background: #f5f5f5;
 }

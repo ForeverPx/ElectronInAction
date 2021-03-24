@@ -58,8 +58,8 @@ if(winTheLock){
       pathname: path.join(__dirname, 'timeWindow/index.html')
     })
     timeWindow = createWindow(timeWindowUrl, {
-      width: 300,
-      height: 200,
+      width: 600,
+      height: 400,
       show: false, //默认不显示窗口
       frame: false,
       webPreferences: {
