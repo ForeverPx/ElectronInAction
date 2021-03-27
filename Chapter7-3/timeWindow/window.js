@@ -41,15 +41,15 @@ ipcRenderer.on('stop-record', () => {
 
 
 const audioContext = new window.AudioContext();
-let inputPoint, audioInput, analyserNode = null;
+let gainNode, audioInput, analyserNode = null;
 function getAudioInfoAndDraw() {
   navigator.getUserMedia({ audio: true }, function (stream) {
-    inputPoint = audioContext.createGain();
+    gainNode = audioContext.createGain();
     audioInput = audioContext.createMediaStreamSource(stream);
-    audioInput.connect(inputPoint);
+    audioInput.connect(gainNode);
     analyserNode = audioContext.createAnalyser();
     analyserNode.fftSize = 2048;
-    inputPoint.connect(analyserNode);
+    gainNode.connect(analyserNode);
     initCanvasInfo();
     // 绘制canvas图像
     canvasFrame();
@@ -59,18 +59,14 @@ function getAudioInfoAndDraw() {
 }
 
 let canvas = null;
-let cWidth = 0;
-let cHeight = 0;
-let numberOfColumn = 0;
-let space = 10;
-let columnWidth = 9; 
+let cWidth = 0; //canvas宽度
+let cHeight = 0; //canvas高度
 let requestAnimationFrameId = null;
 function initCanvasInfo() {
   const canvasElem = document.getElementById("graph");
   cWidth = canvasElem.width;
   cHeight = canvasElem.height;
   canvas = canvasElem.getContext('2d');
-  numberOfColumn = Math.round(cWidth / space);
 }
 
 function canvasFrame() {
