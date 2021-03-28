@@ -17,13 +17,17 @@ html,body{
 }
 
 #save-btn{
-    top: 50px;
-    right: 200px;
+    top: 25px;
+    right: 100px;
     cursor:pointer;
 }
 
 #close-btn{
-    top: 50px;
-    right: 100px;
+    top: 25px;
+    right: 10px;
     cursor:pointer;
+}
+
+#preview{
+    margin-top: 25px;
 }

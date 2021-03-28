@@ -14,10 +14,11 @@ ipcRenderer.on('stop-record', () => {
   stopRecording();
 });
 
-function startRecording(button) {
+function startRecording() {
   navigator.getUserMedia({
     audio: true
   }, function (stream) {
+    console.log('success');
     recorder = new MediaRecorder(stream);
     recorder.start();
     recorder.ondataavailable = event => {
@@ -34,7 +35,7 @@ function startRecording(button) {
   });
 }
 
-function stopRecording(button) {
+function stopRecording() {
   recorder.stop();
 }
 
@@ -66,4 +67,10 @@ saveBtn.addEventListener('click', function () {
   }).catch(err => {
     console.log(err)
   })
+});
+
+const closeBtn = document.getElementById('close-btn');
+closeBtn.addEventListener('click', function () {
+  win.hide();
+  document.getElementById('preview').src = '';
 });

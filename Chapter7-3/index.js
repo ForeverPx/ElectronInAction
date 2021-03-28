@@ -74,8 +74,8 @@ if(winTheLock){
     })
 
     previewWindow = createWindow(previewWindowUrl, {
-      width: 1280,
-      height: 720,
+      width: 600,
+      height: 100,
       show: false, //默认不显示窗口
       frame: false,
       webPreferences: {

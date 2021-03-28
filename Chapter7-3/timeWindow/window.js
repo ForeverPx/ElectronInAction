@@ -74,6 +74,6 @@ function canvasFrame() {
   analyserNode.getByteFrequencyData(freqByteData);
   console.log(freqByteData.length, freqByteData[0], analyserNode.frequencyBinCount);
   canvas.clearRect(0, 0, cWidth, cHeight);
-  canvas.fillRect(0, cHeight, cWidth, -freqByteData[0]);
+  canvas.fillRect(100, cHeight, 100, -freqByteData[0]);
   requestAnimationFrameId = window.requestAnimationFrame(canvasFrame);
 }
