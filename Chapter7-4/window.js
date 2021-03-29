@@ -56,9 +56,12 @@ printBtn.addEventListener('click', function(){
     properties: ["openDirectory"]
   }).then(result => {
     if (result.canceled === false) {
-        console.log("Selected file paths:")
-        console.log(result.filePaths)
-        fs.writeFileSync(`${result.filePaths[0]}/screenshot.png`, nativeImage.toPNG());
+      webview.printToPDF({})
+      .then(function(data){
+        fs.writeFileSync(`${result.filePaths[0]}/printScreenshot.pdf`, data);
+      }).catch(function(){
+
+      });
     }
   }).catch(err => {
     console.log(err)
