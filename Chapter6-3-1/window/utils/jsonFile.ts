@@ -1,4 +1,4 @@
-import { readFile } from './index';
+import { readFile, writeFile } from './index';
 import fs from 'fs';
 
 /**
@@ -25,7 +25,7 @@ export function readData(filePath: string) {
  */
 export function updateData(filePath: string, updateContent: any) {
   try{
-    fs.writeFileSync(filePath, JSON.stringify(updateContent));
+    writeFile(filePath, updateContent);
   }catch(error){
     console.log('写入json文件失败', error)
   }

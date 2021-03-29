@@ -6,11 +6,10 @@ const fs = require('fs')
 
 const webview = document.querySelector('webview')
 webview.addEventListener('ipc-message', (event) => {
-  if (event.channel === 'back') {
-    console.log('webview');
+  if (event.channel === 'img-loaded') {
+    win.show();
   }
 })
-
 
 ipcRenderer.on('begin-capture', function (event) {
   run();
@@ -39,7 +38,6 @@ async function run() {
       });
 
     const imageBase64 = nativeImage.toDataURL();
-    console.log(webview, imageBase64);
     webview.send('imageBase64', imageBase64);
     win.show()
   } catch (e) {

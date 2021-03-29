@@ -12,6 +12,15 @@ export function readFile(filePath: string) {
   }
 }
 
+export function writeFile(filePath:string, content: any){
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(content));
+  } catch (error) {
+    console.log('写入文件失败', error);
+    return false;
+  }
+}
+
 /**
  * @description 文件是否可读
  * @param filePath 项目路径
