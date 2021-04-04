@@ -1,0 +1,13 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+#time {
+  font-size: 80px;
+  text-align: center;
+  line-height: 200px;
+  color: red;
+}

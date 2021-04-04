@@ -1,0 +1,21 @@
+{
+  "name": "screenshottool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "mocha",
+    "electron-test": "electron-mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "electron": "^10.0.0",
+    "mocha": "^8.3.2"
+  },
+  "devDependencies": {
+    "electron-mocha": "^10.0.0"
+  }
+}

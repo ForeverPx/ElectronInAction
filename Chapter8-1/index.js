@@ -1,4 +1,5 @@
 const electron = require('electron');
+console.log(electron.BrowserWindow);
 const { app, globalShortcut } = require('electron');
 const url = require('url');
 const path = require('path');
@@ -37,13 +38,18 @@ if(winTheLock){
     }
   })
 
-  function createWindow(url, options) {
+  function createWindow(url, options, onClose) {
+    if(!url || Object.prototype.toString.call(url) !== '[object String]'){
+      return null;
+    }
+    if(!options || Object.prototype.toString.call(options) !== '[object Object]'){
+      return null;
+    }
+
     const window = new electron.BrowserWindow(options);
     window.loadURL(url)
 
-    window.on('close', function(){
-      window = null;
-    })
+    window.on('close', onClose || function(){});
 
     return window;
   }
@@ -66,6 +72,8 @@ if(winTheLock){
         nodeIntegration: true,
         enableRemoteModule: true
       }
+    }, function(){
+      window = null;
     })
 
     const previewWindowUrl = url.format({
@@ -82,9 +90,14 @@ if(winTheLock){
         nodeIntegration: true,
         enableRemoteModule: true
       }
+    }, function(){
+      window = null;
     })
   })
 }else{
   console.log('quit');
   app.quit();
 }
+
+
+exports.createWindow = createWindow;
