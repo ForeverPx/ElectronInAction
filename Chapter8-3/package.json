@@ -1,0 +1,18 @@
+{
+  "name": "SpectornScreenShot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^11.0.0",
+    "log4js": "^6.3.0",
+    "mkdirp": "^0.5.5",
+    "request": "^2.88.2"
+  }
+}
