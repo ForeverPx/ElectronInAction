@@ -2,6 +2,9 @@ const electron = require('electron');
 const { app, globalShortcut, screen} = require('electron');
 const url = require('url');
 const path = require('path');
+const logger = require('./log');
+
+logger.reportFile();
 const errorHandler = require('./errorHandler');
 
 errorHandler({isAutoLogFile: true}, ()=>{});
@@ -36,7 +39,7 @@ function createWindow() {
   window = new electron.BrowserWindow({
     width: width,
     height: height,
-    show: true, //默认不显示窗口
+    show: false, //默认不显示窗口
     frame: false,
     webPreferences: {
       nodeIntegration: true,
@@ -59,3 +62,5 @@ function createWindow() {
 app.on('window-all-closed', function () {
   app.quit();
 });
+
+// throw new Error();

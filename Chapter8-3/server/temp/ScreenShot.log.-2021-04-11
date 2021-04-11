@@ -1,0 +1,106 @@
+[2021-04-11 11:25:02.200][ERROR]Error
+    at Object.<anonymous> (C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\index.js:66:7)
+    at Module._compile (internal/modules/cjs/loader.js:1152:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1173:10)
+    at Module.load (internal/modules/cjs/loader.js:992:32)
+    at Module._load (internal/modules/cjs/loader.js:885:14)
+    at Function.f._load (electron/js2c/asar_bundle.js:5:12633)
+    at loadApplicationPackage (C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\node_modules\electron\dist\resources\default_app.asar\main.js:110:16)
+    at Object.<anonymous> (C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\node_modules\electron\dist\resources\default_app.asar\main.js:222:9)
+    at Module._compile (internal/modules/cjs/loader.js:1152:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1173:10)
+
+[2021-04-11 11:25:02.200][ERROR]ReferenceError: request is not defined
+    at C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\log.js:50:7
+    at FSReqCallback.oncomplete (fs.js:160:23)
+
+[2021-04-11 11:25:05.200][ERROR]22225555
+
+[2021-04-11 11:26:20.200][ERROR]Error
+    at Object.<anonymous> (C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\index.js:66:7)
+    at Module._compile (internal/modules/cjs/loader.js:1152:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1173:10)
+    at Module.load (internal/modules/cjs/loader.js:992:32)
+    at Module._load (internal/modules/cjs/loader.js:885:14)
+    at Function.f._load (electron/js2c/asar_bundle.js:5:12633)
+    at loadApplicationPackage (C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\node_modules\electron\dist\resources\default_app.asar\main.js:110:16)
+    at Object.<anonymous> (C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\node_modules\electron\dist\resources\default_app.asar\main.js:222:9)
+    at Module._compile (internal/modules/cjs/loader.js:1152:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1173:10)
+
+[2021-04-11 11:26:20.200][ERROR]ReferenceError: request is not defined
+    at C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\log.js:50:7
+    at FSReqCallback.oncomplete (fs.js:160:23)
+
+[2021-04-11 11:26:24.200][ERROR]22225555
+
+[2021-04-11 11:26:47.200][ERROR]ReferenceError: request is not defined
+    at C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\log.js:51:7
+    at FSReqCallback.oncomplete (fs.js:160:23)
+
+[2021-04-11 11:26:51.200][ERROR]22225555
+
+[2021-04-11 11:27:44.200][ERROR]ReferenceError: request is not defined
+    at C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\log.js:52:7
+    at FSReqCallback.oncomplete (fs.js:160:23)
+
+[2021-04-11 11:27:47.200][ERROR]22225555
+
+[2021-04-11 11:28:18.200][ERROR]ReferenceError: request is not defined
+    at C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\log.js:53:7
+    at FSReqCallback.oncomplete (fs.js:160:23)
+
+[2021-04-11 11:28:22.200][ERROR]22225555
+
+[2021-04-11 11:28:39.200][ERROR]ReferenceError: request is not defined
+    at C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\log.js:53:7
+    at FSReqCallback.oncomplete (fs.js:160:23)
+
+[2021-04-11 11:29:52.200][ERROR]ReferenceError: request is not defined
+    at C:\Users\panxiao\Desktop\Demos\ElectronInAction\Chapter8-3\log.js:53:7
+    at FSReqCallback.oncomplete (fs.js:160:23)
+
+[2021-04-11 11:32:49.200][ERROR]22225555
+
+[2021-04-11 11:36:28.200][ERROR]22225555
+
+[2021-04-11 11:37:50.200][ERROR]22225555
+
+[2021-04-11 11:40:37.200][ERROR]22225555
+
+[2021-04-11 11:41:58.200][ERROR]22225555
+
+[2021-04-11 11:42:46.200][ERROR]22225555
+
+[2021-04-11 11:43:06.200][ERROR]22225555
+
+[2021-04-11 11:44:12.200][ERROR]22225555
+
+[2021-04-11 11:45:00.200][ERROR]22225555
+
+[2021-04-11 11:45:17.200][ERROR]22225555
+
+[2021-04-11 11:46:02.200][ERROR]22225555
+
+[2021-04-11 11:50:45.200][ERROR]22225555
+
+[2021-04-11 11:57:10.200][ERROR]22225555
+
+[2021-04-11 11:57:21.200][ERROR]22225555
+
+[2021-04-11 11:57:48.200][ERROR]22225555
+
+[2021-04-11 11:58:29.200][ERROR]22225555
+
+[2021-04-11 11:59:31.200][ERROR]22225555
+
+[2021-04-11 11:59:57.200][ERROR]22225555
+
+[2021-04-11 12:01:16.200][ERROR]22225555
+
+[2021-04-11 12:02:51.200][ERROR]22225555
+
+[2021-04-11 12:03:53.200][ERROR]22225555
+
+[2021-04-11 12:04:21.200][ERROR]22225555
+
