@@ -1,0 +1,21 @@
+{
+  "name": "SentryDemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "mocha",
+    "server": "node ./server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sentry/electron": "^2.4.0",
+    "electron": "^11.0.0"
+  },
+  "devDependencies": {
+    "@sentry/cli": "^1.63.2",
+    "electron-download": "^4.1.1"
+  }
+}
