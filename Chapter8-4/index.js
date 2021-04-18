@@ -9,13 +9,14 @@ const path = require('path');
 //   dsn: "https://b7f8b0ced25349ec907c2acd334c266b@o569388.ingest.sentry.io/5715064"
 // });
 
-const { crashReporter } = require("electron");
-crashReporter.start({
-  companyName: "panxiao",
-  productName: "Demo",
-  ignoreSystemCrashHandler: true,
-  submitURL: "http://127.0.0.1:1127/post",
-});
+// const { crashReporter } = require("electron");
+// crashReporter.start({
+//   companyName: "panxiao",
+//   productName: "Demo",
+//   ignoreSystemCrashHandler: true,
+//   uploadToServer:false,
+//   submitURL: "http://127.0.0.1:1127/post",
+// });
 
 let window = null;
 
@@ -73,4 +74,4 @@ app.on('window-all-closed', function () {
 // myUndefinedFunction();
 // throw new Error('test error')
 
-process.crash();
+// process.crash();

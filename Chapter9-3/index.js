@@ -2,19 +2,40 @@ const electron = require('electron');
 const { app, globalShortcut, screen} = require('electron');
 const url = require('url');
 const path = require('path');
-
+const {autoUpdater} = require("electron-updater");
 let window = null;
+
+autoUpdater.on('checking-for-update', () => {
+  console.log('Checking for update...');
+})
+autoUpdater.on('update-available', (info) => {
+  console.log('Update available.');
+})
+autoUpdater.on('update-not-available', (info) => {
+  console.log('Update not available.');
+})
+autoUpdater.on('error', (err) => {
+  console.log('Error in auto-updater. ' + err);
+})
+autoUpdater.on('download-progress', (progressObj) => {
+  let log_message = "Download speed: " + progressObj.bytesPerSecond;
+  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+  log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+  console.log(log_message);
+})
+autoUpdater.on('update-downloaded', (info) => {
+  console.log('Update downloaded');
+  autoUpdater.quitAndInstall();
+});
 
 app.whenReady().then(() => {
   const result = globalShortcut.register(`Ctrl+0`, function(){
-    // console.log('333333333333');
-    // console.log('2222', window.webContents.getPrinters());
     window.webContents.send('begin-capture');
   })
   if(!result){
-    console.log('fail');
+    console.log('reg fail');
   }else{
-    console.log('success');
+    console.log('reg success');
   }
 })
 
@@ -38,8 +59,7 @@ if(winTheLock){
       frame: false,
       webPreferences: {
         nodeIntegration: true,
-        enableRemoteModule: true,
-        webviewTag: true
+        enableRemoteModule: true
       }
     })
 
@@ -60,7 +80,12 @@ if(winTheLock){
   })
 
   app.on('ready', function () {
-    createWindow()
+    createWindow();
+    autoUpdater.checkForUpdatesAndNotify().then((res)=>{
+      console.log('2', res);
+    }).catch((e)=>{
+      console.log('3', e);
+    });
   })
 }else{
   console.log('quit');

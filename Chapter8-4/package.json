@@ -11,11 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sentry/electron": "^2.4.0",
     "electron": "^11.0.0"
   },
   "devDependencies": {
-    "@sentry/cli": "^1.63.2",
     "electron-download": "^4.1.1"
   }
 }

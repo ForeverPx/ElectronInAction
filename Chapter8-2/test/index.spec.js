@@ -29,7 +29,7 @@ describe("SceenShot", function () {
     winCount.should.equal(1);
   });
 
-  it("it should create neccessary electron in window", async function () {
+  it("it should create neccessary elements in window", async function () {
     await this.app.client.waitUntilWindowLoaded();
 
     const saveBtnElem = await this.app.client.$("#save-btn");

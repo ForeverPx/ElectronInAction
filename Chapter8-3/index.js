@@ -2,12 +2,16 @@ const electron = require('electron');
 const { app, globalShortcut, screen} = require('electron');
 const url = require('url');
 const path = require('path');
-const logger = require('./log');
 
-logger.reportFile();
-const errorHandler = require('./errorHandler');
+console.log('app.name', app.name);
 
-errorHandler({isAutoLogFile: true}, ()=>{});
+const { crashReporter } = require('electron')
+
+crashReporter.start({ 
+  submitURL: 'http://127.0.0.1:1127/post' 
+});
+
+process.crash();
 
 let window = null;
 
@@ -62,5 +66,3 @@ function createWindow() {
 app.on('window-all-closed', function () {
   app.quit();
 });
-
-// throw new Error();
