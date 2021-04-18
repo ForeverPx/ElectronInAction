@@ -1,0 +1,41 @@
+{
+  "name": "screenshot-packager-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "electron-builder": "^22.10.5",
+    "electron": "^10.0.0"
+  },
+  "build": {
+    "directories": {
+      "output": "build"
+    },
+    "win": {  
+      "icon": "./icon.ico",
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ]
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./icon.ico",
+      "uninstallerIcon": "./icon.ico",
+      "installerHeaderIcon": "./icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "screenshot",
+      "oneClick":"false"
+    }
+  }
+}
