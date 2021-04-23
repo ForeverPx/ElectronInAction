@@ -82,9 +82,9 @@ if(winTheLock){
   app.on('ready', function () {
     createWindow();
     autoUpdater.checkForUpdatesAndNotify().then((res)=>{
-      console.log('2', res);
+      console.log('update sucess');
     }).catch((e)=>{
-      console.log('3', e);
+      console.log('update fail', e);
     });
   })
 }else{
