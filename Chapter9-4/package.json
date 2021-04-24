@@ -1,0 +1,21 @@
+{
+  "name": "screenshot-packager-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build-icon": "",
+    "packager": "electron-packager ./ ScreenShotForTest --platform=win32 --arch=x64 --icon=./icon/logo.ico --asar",
+    "appx": "electron-windows-store --input-directory C:\\Users\\panxiao\\Desktop\\Demos\\ElectronInAction\\Chapter9-4\\screenshot-win32-x64 --output-directory C:\\Users\\panxiao\\Desktop\\Demos\\ElectronInAction\\Chapter9-4\\appx --package-version 1.0.0.0 --package-name ScreenShotForTest --package-display-name ScreenShotForTest --publisher-display-name Panxiao --identity-name 25751Panxiao.ScreenShotForTest -a C:\\Users\\panxiao\\Desktop\\Demos\\ElectronInAction\\Chapter9-4\\icons"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^10.0.0"
+  },
+  "devDependencies": {
+    "electron-icon-builder": "^2.0.1",
+    "electron-packager": "^15.2.0"
+  }
+}
