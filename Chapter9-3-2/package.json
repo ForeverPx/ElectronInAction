@@ -1,0 +1,22 @@
+{
+  "name": "screenshot-packager-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build-icon": "",
+    "packager": "electron-packager ./ screenshot --platform=win32 --arch=x64 --icon=./icon/logo.ico"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^10.0.0"
+  },
+  "devDependencies": {
+    "bsdiff-node": "^2.3.0",
+    "electron-icon-builder": "^2.0.1",
+    "electron-packager": "^15.2.0",
+    "md5": "^2.3.0"
+  }
+}
