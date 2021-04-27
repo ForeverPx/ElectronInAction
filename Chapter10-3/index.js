@@ -8,9 +8,7 @@ const winAUrls = url.format({
 })
 
 const winA = new BaseWindow('winA', {
-  url: winAUrls, 
-  width: 800, 
-  height: 600
+  url: winAUrls,
 });
 
 const winBUrls = url.format({
@@ -19,12 +17,7 @@ const winBUrls = url.format({
 })
 
 const winB = new BaseWindow('winB', {
-  url: winBUrls,
-  width: 800, 
-  height: 600
+  url: winBUrls
 });
 
-winB.open();
-winB.on('ready-to-show', () => {
-  winA.open();
-});
+winA.open();

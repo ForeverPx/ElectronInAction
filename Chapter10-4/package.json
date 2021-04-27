@@ -1,0 +1,19 @@
+{
+  "name": "SugarElectronStoreDemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron . env=dev",
+    "dev": "electron . env=dev", 
+    "test": "electron . env=test", 
+    "prod": "electron . "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^11.0.0",
+    "sugar-electron": "^1.0.60"
+  },
+  "devDependencies": {}
+}
