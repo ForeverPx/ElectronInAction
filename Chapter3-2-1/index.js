@@ -4,26 +4,6 @@ const url = require('url');
 const path = require('path');
 const { ipcMain } = require('electron');
 
-const messageChannelMap = {
-
-}
-
-function registMessageChannel(channel, webContentsId){
-  if(messageChannelMap[channel] !== undefined){
-    let alreadyHas = false;
-    for(let i = 0; i < messageChannelMap[channel].length; i++){
-      if(messageChannelMap[channel][i] === webContentsId){
-        alreadyHas = true;
-      }
-    }
-    if(!alreadyHas){
-      messageChannelMap[channel].push(webContentsId);
-    }
-  }else{
-    messageChannelMap[channel] = [webContentsId];
-  }
-}
-
 let window = null;
 
 ipcMain.on('data', (event, data) => {
@@ -34,7 +14,6 @@ ipcMain.on('data', (event, data) => {
     window.webContents.send('data-res', 'fail');
   }
 })
-
 
 function createWindow() {
 
