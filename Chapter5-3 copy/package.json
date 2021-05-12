@@ -1,15 +1,19 @@
 {
-  "name": "systeminfoapp",
+  "name": "autoLaunch",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron . --log-net-log=./chromium-net-log.txt",
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
+  "nsis": {
+    "include": "build/script/installer.nsh"
+  },
   "dependencies": {
-    "electron-store": "^6.0.1"
+    "electron-builder": "^22.9.1",
+    "log4js": "^6.3.0"
   }
 }

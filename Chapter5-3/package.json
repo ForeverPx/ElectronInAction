@@ -1,0 +1,19 @@
+{
+  "name": "customProtocol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "nsis": {
+    "include": "build/script/installer.nsh"
+  },
+  "dependencies": {
+    "electron-builder": "^22.9.1",
+    "log4js": "^6.3.0"
+  }
+}

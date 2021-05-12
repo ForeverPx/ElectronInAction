@@ -1,14 +1,14 @@
 const os = require('os');
 
-// require('./snapshots/wrapRequire');
-// snapshotResult.setGlobals(
-//   global,
-//   process,
-//   window,
-//   document,
-//   console,
-//   global.require
-// )
+require('./snapshots/wrapRequire');
+snapshotResult.setGlobals(
+  global,
+  process,
+  window,
+  document,
+  console,
+  global.require
+)
 const snap = require('./snapshots/snapshots.js');
 
 function getCpu() {
