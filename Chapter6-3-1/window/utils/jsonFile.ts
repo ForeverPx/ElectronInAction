@@ -1,5 +1,4 @@
 import { readFile, writeFile } from './index';
-import fs from 'fs';
 
 /**
  * @description 读取 json格式的文件 内容
