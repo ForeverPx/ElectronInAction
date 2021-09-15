@@ -32,7 +32,7 @@ if(winTheLock){
     window = new BrowserWindow({
       width: width,
       height: height,
-      show: true, //默认不显示窗口
+      show: false, //默认不显示窗口
       frame: false,
       webPreferences: {
         nodeIntegration: true,
@@ -67,7 +67,7 @@ if(winTheLock){
         app.quit();
       }}
     ])
-    tray.setToolTip('This is my application.')
+    tray.setToolTip('Screen Capture')
     tray.setContextMenu(contextMenu)
   })
 }else{

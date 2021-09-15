@@ -2,6 +2,7 @@ const { desktopCapturer, remote, ipcRenderer} = window.require('electron');
 const dialog = remote.dialog
 const screen = remote.screen;
 const win = remote.getCurrentWindow();
+const { shell } = require('electron');
 const fs = require('fs')
 const {
   drawCanvas,
@@ -65,11 +66,20 @@ saveBtn.addEventListener('click', function(){
     properties: ["openDirectory"]
   }).then(result => {
     if (result.canceled === false) {
-        console.log("Selected file paths:")
-        console.log(result.filePaths)
+        const successNotification = new Notification('屏幕截图', {
+          body: '保存截图成功'
+        });
+        
+        successNotification.onclick = () => {
+          shell.openExternal(`${result.filePaths[0]}`);
+        };
+
         fs.writeFileSync(`${result.filePaths[0]}/screenshot.png`, nativeImage.toPNG());
     }
   }).catch(err => {
-    console.log(err)
-  })
-})  
+    new Notification('屏幕截图', {
+      body: '保存截图失败'
+    })
+    console.log(err);
+  });
+});
