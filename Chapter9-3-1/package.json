@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --publish always"
+    "build": "electron-builder --publish always",
+    "server":"http-server statics/ -p 8080"
   },
   "author": "",
   "license": "ISC",
