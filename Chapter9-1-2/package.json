@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "build-icon": "",
-    "packager": "electron-packager ./ screenshot --platform=win32 --arch=x64 --icon=./icon/logo.ico"
+    "build-icon": "electron-icon-builder --input=C:/Users/panxiao/Desktop/Demos/ElectronInAction/Chapter9-1-2/icons/logo.png --output=C:/Users/panxiao/Desktop/Demos/ElectronInAction/Chapter9-1-2/icons",
+    "packager": "electron-packager ./ screenshot --platform=win32 --arch=x64 --icon=./icon/logo.ico --asar"
   },
   "author": "",
   "license": "ISC",
