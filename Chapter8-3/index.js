@@ -3,16 +3,6 @@ const { app, globalShortcut, screen} = require('electron');
 const url = require('url');
 const path = require('path');
 
-console.log('app.name', app.name);
-
-const { crashReporter } = require('electron')
-
-crashReporter.start({ 
-  submitURL: 'http://127.0.0.1:1127/post' 
-});
-
-process.crash();
-
 let window = null;
 
 app.whenReady().then(() => {
@@ -27,16 +17,6 @@ app.whenReady().then(() => {
     console.log('注册快捷键成功');
   }
 })
-
-
-// app.on('second-instance', (event, commandLine, workingDirectory) => {
-//   if (window) {
-//     if (window.isMinimized()){
-//       window.restore();
-//     }
-//     window.focus();
-//   }
-// })
 
 function createWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize

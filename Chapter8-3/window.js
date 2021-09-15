@@ -12,10 +12,10 @@ const {
   resizeCanvas
 } = require('./canvas');
 
+//throw new Error();
+
 new Promise((resolve,reject)=>{
-  setTimeout(()=>{
-    reject(22225555);
-  }, 2000);
+  reject(22225555);
 })
 
 resizeCanvas();
@@ -70,17 +70,15 @@ closeBtn.addEventListener('click', function(){
 
 const saveBtn = document.getElementById('save-btn');
 saveBtn.addEventListener('click', function(){
-  // dialog.showOpenDialog(win, {
-  //   properties: ["openDirectory"]
-  // }).then(result => {
-  //   if (result.canceled === false) {
-  //       console.log("Selected file paths:")
-  //       console.log(result.filePaths)
-  //       fs.writeFileSync(`${result.filePaths[0]}/screenshot.png`, nativeImage.toPNG());
-  //   }
-  // }).catch(err => {
-  //   console.log(err)
-  // })
-
-  fs.writeFileSync(`./screenshot.png`, nativeImage.toPNG());
+  dialog.showOpenDialog(win, {
+    properties: ["openDirectory"]
+  }).then(result => {
+    if (result.canceled === false) {
+        console.log("Selected file paths:")
+        console.log(result.filePaths)
+        fs.writeFileSync(`${result.filePaths[0]}/screenshot.png`, nativeImage.toPNG());
+    }
+  }).catch(err => {
+    console.log(err)
+  })
 })  

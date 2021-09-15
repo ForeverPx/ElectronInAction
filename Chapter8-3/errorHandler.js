@@ -1,4 +1,4 @@
-  const logger = require('./log');
+const logger = require('./log');
 
 let isInited = false;
 let defaultOptions = {
