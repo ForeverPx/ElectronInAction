@@ -69,9 +69,6 @@ printBtn.addEventListener('click', function(){
       }).catch(function(e){
         console.log(`打印失败 ${e}`)
       });
-
-      // const printers = win.webContents.getPrinters();
-      // console.log(printers);
     }
   }).catch(err => {
     console.log(err)
@@ -79,13 +76,13 @@ printBtn.addEventListener('click', function(){
 })  
 
 
-const printBtn = document.getElementById('print-btn');
-printBtn.addEventListener('click', function(){
-  webview.print({})
-  .then(function(){
-    console.log(`打印成功`)
-  }).catch(function(e){
-    console.log(`打印失败 ${e}`)
-  });
-})  
+// const printBtn = document.getElementById('print-btn');
+// printBtn.addEventListener('click', function(){
+//   webview.print({})
+//   .then(function(){
+//     console.log(`打印成功`)
+//   }).catch(function(e){
+//     console.log(`打印失败 ${e}`)
+//   });
+// })  
 

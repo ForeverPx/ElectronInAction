@@ -7,8 +7,6 @@ let window = null;
 
 app.whenReady().then(() => {
   const result = globalShortcut.register(`Ctrl+0`, function(){
-    // console.log('333333333333');
-    // console.log('2222', window.webContents.getPrinters());
     window.webContents.send('begin-capture');
   })
   if(!result){
